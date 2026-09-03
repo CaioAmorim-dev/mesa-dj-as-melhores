@@ -5,6 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 public class MesaDJ {
-    private Map<String, Instrumento> instrumentos;
+    private Map<String, Instrumentos> instrumentos;
     
 }

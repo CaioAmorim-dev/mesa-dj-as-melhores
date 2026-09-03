@@ -7,5 +7,15 @@ public class Instrumentos {
     private EstadoFaixa estado;
     private Thread thread;
 
-    
+    public Instrumentos(String nome, String som, int bpm) {
+        this.nome = nome;
+        this.bpm = bpm;
+        this.som = som;
+        this.estado = PARADO;
+        
+    }
+
+    public void iniciar() {
+        
+    }
 }
