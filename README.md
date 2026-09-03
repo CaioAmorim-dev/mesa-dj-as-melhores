@@ -19,7 +19,7 @@ No Windows, o `run.bat` faz as duas coisas.
 
 ### Interface gráfica no navegador
 
-O projeto também possui uma interface web local, feita com HTML, CSS e JavaScript e conectada diretamente ao `Mixer` por um servidor HTTP em Java. Ela permite trocar de música, controlar cada faixa, ajustar o BPM, sincronizar o compasso e adicionar os instrumentos extras sem digitar comandos no terminal.
+O projeto também possui uma **interface web local**, feita com HTML, CSS e JavaScript e conectada diretamente ao `Mixer` por um **servidor HTTP em Java**. Ela permite trocar de música, controlar cada faixa, ajustar o BPM, sincronizar o compasso e adicionar os instrumentos extras sem digitar comandos no terminal.
 
 No Windows, execute:
 
