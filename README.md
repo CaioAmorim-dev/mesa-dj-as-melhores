@@ -17,6 +17,27 @@ java -cp out br.com.cesar.dj.Main
 
 No Windows, o `run.bat` faz as duas coisas.
 
+### Interface gráfica no navegador
+
+O projeto também possui uma interface web local, feita com HTML, CSS e JavaScript e conectada diretamente ao `Mixer` por um servidor HTTP em Java. Ela permite trocar de música, controlar cada faixa, ajustar o BPM, sincronizar o compasso e adicionar os instrumentos extras sem digitar comandos no terminal.
+
+No Windows, execute:
+
+```bat
+run-web.bat
+```
+
+Depois, abra [http://localhost:8080](http://localhost:8080) no navegador. Mantenha o terminal aberto enquanto estiver usando a mesa. Para finalizar corretamente todas as threads e liberar o sintetizador MIDI, use o botão **Desligar mesa** ou pressione `Ctrl+C` no terminal.
+
+Para compilar e iniciar manualmente:
+
+```bash
+javac -encoding UTF-8 -d out src/br/com/cesar/dj/*.java
+java -cp out br.com.cesar.dj.MainWeb
+```
+
+O modo original de console continua disponível normalmente pelo `run.bat`.
+
 ---
 
 ## Atendimento aos requisitos da atividade
@@ -124,6 +145,8 @@ Em **Save a Prayer**, o arranjo recria de forma aproximada a atmosfera da músic
 ```
 src/br/com/cesar/dj/
 ├── Main.java              ponto de entrada: monta o mixer e chama o console
+├── MainWeb.java           ponto de entrada da interface gráfica local
+├── ServidorWeb.java       servidor HTTP e API que controlam o mixer
 ├── Instrumento.java       a thread da faixa (wait/notify, volatile, interrupt)
 ├── EstadoFaixa.java       enum: TOCANDO, PAUSADO, PARADO
 ├── RelogioMestre.java     grade rítmica compartilhada (temporização absoluta)
@@ -134,6 +157,8 @@ src/br/com/cesar/dj/
 ├── Console.java           leitor de comandos e sincronizador de log
 └── PainelStatus.java      thread daemon auxiliar de monitoramento
 ```
+
+Os arquivos visuais da interface ficam no diretório `web/`: `index.html`, `style.css` e `app.js`.
 
 ---
 

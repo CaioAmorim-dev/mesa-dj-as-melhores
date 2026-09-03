@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080a0f">
+    <title>Mesa DJ Multithread</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="noise"></div>
+<main class="app-shell">
+    <header class="topbar">
+        <div class="brand">
+            <div class="brand-mark"><span></span><span></span><span></span></div>
+            <div>
+                <p class="eyebrow">JAVA · MULTITHREAD</p>
+                <h1>Mesa DJ</h1>
+            </div>
+        </div>
+        <div class="system-status"><i></i> SISTEMA ONLINE</div>
+    </header>
+
+    <section class="hero panel">
+        <div class="now-playing">
+            <p class="eyebrow">AGORA NA MESA</p>
+            <h2 id="music-title">Carregando...</h2>
+            <p id="music-meta" class="muted"></p>
+        </div>
+        <label class="music-picker">
+            <span>Repertório</span>
+            <select id="music-select" aria-label="Selecionar música"></select>
+        </label>
+        <div class="master-bpm">
+            <label for="master-bpm">BPM mestre</label>
+            <div class="number-control">
+                <input id="master-bpm" type="number" min="1" max="400" value="117">
+                <button id="apply-bpm" class="button compact">Aplicar</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="transport panel">
+        <button id="play-all" class="button primary"><span>▶</span> Tocar todas</button>
+        <button id="pause-all" class="button"><span>Ⅱ</span> Silêncio</button>
+        <button id="sync" class="button"><span>↻</span> Sincronizar</button>
+        <div class="transport-spacer"></div>
+        <button id="open-add" class="button accent"><span>＋</span> Adicionar faixa</button>
+    </section>
+
+    <section class="tracks-section">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">CANAIS ATIVOS</p>
+                <h2>Faixas</h2>
+            </div>
+            <p><span id="track-count">0</span> threads</p>
+        </div>
+        <div id="tracks" class="tracks-grid" aria-live="polite"></div>
+    </section>
+
+    <footer>
+        <p>Cada canal é executado por uma thread Java independente.</p>
+        <button id="shutdown" class="shutdown">Desligar mesa</button>
+    </footer>
+</main>
+
+<dialog id="add-dialog">
+    <form id="add-form">
+        <div class="dialog-heading">
+            <div>
+                <p class="eyebrow">NOVO CANAL</p>
+                <h2>Adicionar faixa</h2>
+            </div>
+            <button type="button" class="icon-button" id="close-dialog" aria-label="Fechar">×</button>
+        </div>
+        <label>Faixa prevista
+            <select id="extra-select"></select>
+        </label>
+        <label>Nome
+            <input id="track-name" required maxlength="30" placeholder="Ex.: Guitarra">
+        </label>
+        <div class="form-row">
+            <label>Som do eco
+                <input id="track-sound" maxlength="20" value="tshhh">
+            </label>
+            <label>BPM
+                <input id="track-bpm" type="number" min="1" max="400" value="117">
+            </label>
+        </div>
+        <button class="button primary full" type="submit">Criar e tocar</button>
+    </form>
+</dialog>
+
+<div id="toast" role="status"></div>
+<script src="/app.js"></script>
+</body>
+</html>
