@@ -186,17 +186,100 @@ public final class Musica {
     }
 
     // ==================================================================================
+    // 4. SAVE A PRAYER — Duran Duran (2009 Remaster), ~114 BPM, Re menor
+    //
+    // Ressalva honesta: o BPM e a tonalidade sao tratados aqui como aproximacoes praticas.
+    // O arranjo usa a progressao Dm-F-Bbmaj7-G, muito associada a musica, mas condensada
+    // para caber na arquitetura simples de padroes MIDI desta mesa.
+    //
+    // Como o projeto nao trabalha com audio real, a faixa "Vocal" e uma representacao
+    // instrumental da melodia cantada, tocada por um lead suave.
+    // ==================================================================================
+    public static Musica saveAPrayer() {
+        // Bateria pop eletronica: bumbo marcando o pulso, caixa/palmas no 2 e 4 e chimbal
+        // em colcheias, com um pequeno acento no fechamento do ciclo.
+        Padrao bateria = Padrao.percussivo("bateria eletronica pop 4/4", 96, 2, new int[][]{
+                {36, 42}, {42}, {38, 39, 42}, {42},
+                {36, 42}, {42}, {38, 39, 42}, {42},
+                {36, 42}, {42}, {38, 39, 42}, {42},
+                {36, 42}, {42}, {38, 39, 42}, {42, 46}
+        });
+
+        // Linha de baixo inspirada na subida/descida do original sobre Dm-F-Bbmaj7-G.
+        // Nao e uma transcricao nota a nota: a intencao e capturar o movimento do groove.
+        Padrao baixo = Padrao.melodico("baixo Dm-F-Bbmaj7-G", 38 /* Synth Bass 1 */, 102, 2, new int[][]{
+                {38}, {45}, {43}, {41}, {41}, {40}, {38}, {45},
+                {41}, {48}, {47}, {45}, {45}, {43}, {41}, {48},
+                {34}, {41}, {45}, {46}, {46}, {45}, {43}, {41},
+                {43}, {50}, {48}, {47}, {45}, {43}, {41}, {40}
+        });
+
+        // Pad de synth sustentado com a progressao principal do verso/intro.
+        Padrao synth = Padrao.melodico("pad Dm-F-Bbmaj7-G", 89 /* Warm Pad */, 66, 1, new int[][]{
+                {50, 53, 57}, Padrao.SUSTENTA, Padrao.SUSTENTA, Padrao.SUSTENTA,
+                {53, 57, 60}, Padrao.SUSTENTA, Padrao.SUSTENTA, Padrao.SUSTENTA,
+                {46, 50, 53, 57}, Padrao.SUSTENTA, Padrao.SUSTENTA, Padrao.SUSTENTA,
+                {43, 47, 50}, Padrao.SUSTENTA, Padrao.SUSTENTA, Padrao.SUSTENTA
+        });
+
+        // Teclado/piano marcando a harmonia com ataques leves nos contratempos.
+        Padrao piano = Padrao.melodico("piano eletrico Dm-F-Bbmaj7-G", 4 /* Piano eletrico */, 74, 2, new int[][]{
+                {62, 65, 69}, Padrao.SILENCIO, Padrao.SILENCIO, {65, 69, 74},
+                Padrao.SILENCIO, {62, 65, 69}, Padrao.SILENCIO, Padrao.SILENCIO,
+                {65, 69, 72}, Padrao.SILENCIO, Padrao.SILENCIO, {69, 72, 77},
+                Padrao.SILENCIO, {65, 69, 72}, Padrao.SILENCIO, Padrao.SILENCIO,
+                {58, 62, 65, 69}, Padrao.SILENCIO, Padrao.SILENCIO, {62, 65, 69},
+                Padrao.SILENCIO, {58, 62, 65, 69}, Padrao.SILENCIO, Padrao.SILENCIO,
+                {55, 59, 62}, Padrao.SILENCIO, Padrao.SILENCIO, {59, 62, 67},
+                Padrao.SILENCIO, {55, 59, 62}, Padrao.SILENCIO, Padrao.SILENCIO
+        });
+
+        // Representacao instrumental da melodia vocal ("Save it till the morning after"),
+        // simplificada para ficar reconhecivel sem usar audio externo.
+        Padrao vocal = Padrao.melodico("melodia vocal instrumental", 80 /* Lead 1 square */, 78, 2, new int[][]{
+                {74}, Padrao.SUSTENTA, {72}, {69}, {67}, Padrao.SUSTENTA, {69}, Padrao.SILENCIO,
+                {74}, Padrao.SUSTENTA, {72}, {69}, {67}, Padrao.SUSTENTA, {65}, Padrao.SILENCIO,
+                {71}, Padrao.SUSTENTA, {69}, {67}, {66}, Padrao.SUSTENTA, {69}, Padrao.SILENCIO,
+                {72}, Padrao.SUSTENTA, {71}, {69}, {67}, Padrao.SUSTENTA, Padrao.SILENCIO, Padrao.SILENCIO
+        });
+
+        // Extras: arpejo brilhante de synth e uma cama de cordas para reforcar o clima noturno.
+        Padrao arpejo = Padrao.dedilhado("arpejo de synth Dm-F-Bbmaj7-G", 81 /* Lead 2 sawtooth */, 58, 4, new int[][]{
+                {62}, {65}, {69}, {74}, {69}, {65}, {62}, Padrao.SILENCIO,
+                {65}, {69}, {72}, {77}, {72}, {69}, {65}, Padrao.SILENCIO,
+                {58}, {62}, {65}, {69}, {65}, {62}, {58}, Padrao.SILENCIO,
+                {55}, {59}, {62}, {67}, {62}, {59}, {55}, Padrao.SILENCIO
+        });
+        Padrao pad = Padrao.melodico("cordas sintetizadas em Re menor", 50 /* Synth Strings */, 54, 1, new int[][]{
+                {50, 57, 65}, Padrao.SUSTENTA, Padrao.SUSTENTA, Padrao.SUSTENTA,
+                {53, 60, 69}, Padrao.SUSTENTA, Padrao.SUSTENTA, Padrao.SUSTENTA,
+                {46, 53, 62, 69}, Padrao.SUSTENTA, Padrao.SUSTENTA, Padrao.SUSTENTA,
+                {43, 50, 59, 67}, Padrao.SUSTENTA, Padrao.SUSTENTA, Padrao.SUSTENTA
+        });
+
+        return new Musica("save", "Save a Prayer - Duran Duran (2009 Remaster)", "Re menor", 114,
+                List.of(new Faixa("Bateria", "tum-tss", bateria),
+                        new Faixa("Baixo", "dum-dum", baixo),
+                        new Faixa("Synth", "aaaah", synth),
+                        new Faixa("Piano", "plim", piano),
+                        new Faixa("Vocal", "wiiii", vocal)),
+                List.of(new Faixa("Arpejo", "piiim", arpejo),
+                        new Faixa("Pad", "oooooh", pad)),
+                new int[]{62, 65, 67, 69, 72} /* pentatonica de Re menor */);
+    }
+
+    // ==================================================================================
     // Catálogo
     // ==================================================================================
 
     /** Repertório completo da mesa, na ordem em que aparece no comando setlist. */
     public static List<Musica> catalogo() {
-        return List.of(billieJean(), sevenNationArmy(), sweetDreams());
+        return List.of(billieJean(), sevenNationArmy(), sweetDreams(), saveAPrayer());
     }
 
     /**
      * Procura uma música pelo apelido digitado pelo DJ, aceitando abreviações
-     * (billie, seven, sweet) e trechos do título.
+     * (billie, seven, sweet, save) e trechos do título.
      */
     public static Musica porId(String entrada) {
         if (entrada == null || entrada.isBlank()) {
