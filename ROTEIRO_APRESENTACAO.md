@@ -76,10 +76,7 @@ Mostre exatamente três trechos:
 
 Se sobrar fôlego, abra `RelogioMestre.java`:
 
-> "Cada thread poderia simplesmente dormir 256 ms por volta. Só que o tempo gasto tocando a nota
-> se acumula, e em 30 segundos o baixo já teria saído do tempo da bateria. Então nenhuma thread
-> conta o tempo sozinha: todas calculam o **instante absoluto** do próximo passo a partir de uma
-> origem comum."
+> "Cada thread poderia simplesmente dormir 256 ms por volta. Só que o tempo gasto tocando a nota se acumula, e em 30 segundos o baixo já teria saído do tempo da bateria. Então nenhuma thread conta o tempo sozinha: todas calculam o **instante absoluto** do próximo passo a partir de uma origem comum."
 
 ---
 
@@ -102,7 +99,7 @@ Prova visual do paralelismo:
 eco on
 ```
 
-> "Cada linha dessas é uma thread diferente escrevendo na tela — e todas passam pelo mesmo lock de
+> "Cada linha dessas é uma thread diferente escrevendo na tela e todas passam pelo mesmo lock de
 > impressão. Sem ele, as linhas sairiam picotadas umas dentro das outras: a tela também é uma
 > seção crítica."
 
@@ -144,11 +141,7 @@ Guarde esta observação para o final — ela explica por que esta faixa soa mai
 outras duas:
 
 > "Repararam que a mesa acerta mais umas músicas do que outras? Não é sorte. Nas outras, o
-> sintetizador do Java está **imitando** uma bateria e um baixo acústicos. Nesta, não: Sweet
-> Dreams foi gravada em 1983 com sequenciador, sintetizador e bateria eletrônica — a mesma
-> tecnologia que este programa. Um relógio, uma grade de passos e um sintetizador recebendo
-> eventos. Quanto mais a música original for feita de eventos e menos de gravação, mais perto a
-> nossa versão chega."
+> sintetizador do Java está **imitando** uma bateria e um baixo acústicos. Nesta, não: Sweet Dreams foi gravada em 1983 com sequenciador, sintetizador e bateria eletrônica — a mesma tecnologia que este programa. Um relógio, uma grade de passos e um sintetizador recebendo eventos. Quanto mais a música original for feita de eventos e menos de gravação, mais perto a nossa versão chega."
 
 ---
 
