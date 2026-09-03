@@ -2,7 +2,7 @@
 
 Aplicação de console para a disciplina de **Infraestrutura de Software**. Cada faixa musical de um arranjo executa de forma concorrente e autônoma **em sua própria `Thread`**, e o usuário atua como DJ: traz faixas, pausa, encerra e muda o andamento em tempo real, sem que uma faixa interfira nas demais.
 
-A mesa tem um repertório de três músicas e sobe **em silêncio absoluto**: todas as threads já estão vivas, dormindo em `wait()`, e a música é montada ao vivo — faixa por faixa — pelos comandos do console. O som sai pelo sintetizador MIDI que já vem embutido no JDK (`javax.sound.midi`), sem nenhuma biblioteca externa.
+A mesa tem um repertório de quatro músicas e sobe **em silêncio absoluto**: todas as threads já estão vivas, dormindo em `wait()`, e a música é montada ao vivo — faixa por faixa — pelos comandos do console. O som sai pelo sintetizador MIDI que já vem embutido no JDK (`javax.sound.midi`), sem nenhuma biblioteca externa.
 
 ---
 
@@ -77,8 +77,11 @@ Foi acrescentado ainda um **relógio mestre** (`RelogioMestre.java`). Em vez de 
 | `billie` | Billie Jean — Michael Jackson | 117 BPM, Fá# menor | bateria, baixo, synth | guitarra, vocal |
 | `seven` | Seven Nation Army — The White Stripes | 124 BPM, Mi menor | bateria, baixo, guitarra | palmas, solo |
 | `sweet` | Sweet Dreams — Eurythmics | 126 BPM, Dó menor | riff, baixo, bateria | pad, solo |
+| `save` | Save a Prayer — Duran Duran (2009 Remaster) | 114 BPM, Ré menor | bateria, baixo, synth, piano, vocal | arpejo, pad |
 
 Cada faixa é uma thread; cada música é apenas um conjunto diferente de faixas. Todo o material musical fica em `Musica.java` e `Padrao.java`, separado do código de concorrência — acrescentar uma música é escrever dados, não lógica de threads.
+
+Em **Save a Prayer**, o arranjo recria de forma aproximada a atmosfera da música com uma bateria pop eletrônica, baixo inspirado na progressão em Ré menor, synth sustentado, piano elétrico e uma representação instrumental da melodia vocal. As faixas opcionais `arpejo` e `pad` podem ser acrescentadas durante a execução com `add arpejo` e `add pad`, sem interromper as demais threads.
 
 > Os arranjos são **aproximações** montadas para a demonstração, com os timbres do banco de sons General MIDI. Não são transcrições das gravações originais.
 
@@ -90,7 +93,7 @@ Cada faixa é uma thread; cada música é apenas um conjunto diferente de faixas
 | Comando | Descrição |
 |---|---|
 | `setlist` | Lista as músicas disponíveis |
-| `billie` / `seven` / `sweet` | Carrega a música com todas as faixas **em silêncio** |
+| `billie` / `seven` / `sweet` / `save` | Carrega a música com todas as faixas **em silêncio** |
 
 ### Montar a música ao vivo
 | Comando | Descrição |
@@ -125,7 +128,7 @@ src/br/com/cesar/dj/
 ├── EstadoFaixa.java       enum: TOCANDO, PAUSADO, PARADO
 ├── RelogioMestre.java     grade rítmica compartilhada (temporização absoluta)
 ├── Padrao.java            estrutura de um padrão rítmico/melódico
-├── Musica.java            catálogo: as três músicas e seus arranjos
+├── Musica.java            catálogo: as quatro músicas e seus arranjos
 ├── GerenciadorAudio.java  saída MIDI thread-safe (um canal por faixa)
 ├── Mixer.java             registro thread-safe das faixas (ConcurrentHashMap)
 ├── Console.java           leitor de comandos e sincronizador de log
