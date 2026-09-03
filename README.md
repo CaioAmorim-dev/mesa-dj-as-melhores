@@ -134,6 +134,12 @@ src/br/com/cesar/dj/
 
 ---
 
+## Arquitetura
+
+O projeto foi modelado antes da implementação para definir as responsabilidades e os relacionamentos entre as classes.
+
+![Diagrama de classes](docs/diagramas/diagrama-classes.png)
+
 ## Documentos de apoio
 
 - **[DECISOES_DE_PROJETO.md](DECISOES_DE_PROJETO.md)** — justificativa técnica de cada decisão de concorrência, com as más práticas que foram evitadas e o porquê de cada escolha.
