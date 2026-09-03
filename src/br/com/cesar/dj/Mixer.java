@@ -258,7 +258,7 @@ public class Mixer {
             sb.append(String.format("  %-8s %-42s %3d BPM   %s\n", m.getId(), m.getTitulo(), m.getBpm(), nomes));
         }
         sb.append("-".repeat(90)).append("\n");
-        sb.append("Digite o apelido da música (billie, seven, sweet) para carregá-la em silêncio.");
+        sb.append("Digite o apelido da música (billie, seven, sweet, save) para carregá-la em silêncio.");
         Console.log(sb.toString());
     }
 

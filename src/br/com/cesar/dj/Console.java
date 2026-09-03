@@ -139,7 +139,7 @@ public class Console {
                     }
                     case "list" -> mixer.listarFaixas();
                     case "setlist", "repertorio", "repertrio", "musicas", "msicas" -> mixer.listarRepertorio();
-                    case "musica", "msica", "billie", "seven", "sweet" -> {
+                    case "musica", "msica", "billie", "seven", "sweet", "save" -> {
                         boolean comandoGenerico = comando.startsWith("mus") || comando.startsWith("ms");
                         String alvo = comandoGenerico ? (partes.length >= 2 ? partes[1] : "") : comando;
                         Musica escolhida = Musica.porId(alvo);
@@ -226,7 +226,7 @@ public class Console {
         ===================================================================
         REPERTORIO
           setlist               - Lista as musicas disponiveis
-          billie|seven|sweet  - Carrega a musica (todas as faixas EM SILENCIO)
+          billie|seven|sweet|save - Carrega a musica (todas as faixas EM SILENCIO)
 
         MONTAR A MUSICA AO VIVO
           play <faixa>          - Traz a faixa (acorda a thread com notifyAll)
