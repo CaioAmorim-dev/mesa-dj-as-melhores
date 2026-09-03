@@ -91,8 +91,12 @@ public class Mixer {
     public void play(String nome) {
         Instrumento inst = buscarInstrumento(nome);
         if (inst != null) {
-            inst.play();
-            Console.logSistema("Faixa '" + inst.getNome() + "' entrou (PLAY).");
+            if (inst.getEstado() == EstadoFaixa.TOCANDO) {
+                Console.logSistema("Faixa '" + inst.getNome() + "' já está tocando.");
+            } else {
+                inst.play();
+                Console.logSistema("Faixa '" + inst.getNome() + "' entrou (PLAY).");
+            }
         }
     }
 
